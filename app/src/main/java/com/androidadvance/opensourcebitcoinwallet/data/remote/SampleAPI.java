@@ -1,7 +1,9 @@
 package com.androidadvance.opensourcebitcoinwallet.data.remote;
 
 import android.content.Context;
-import com.andrei.template.BuildConfig;
+
+import com.androidadvance.opensourcebitcoinwallet.BuildConfig;
+
 import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
 import okhttp3.CertificatePinner;

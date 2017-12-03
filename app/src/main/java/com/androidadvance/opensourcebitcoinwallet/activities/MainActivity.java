@@ -1,10 +1,13 @@
 package com.androidadvance.opensourcebitcoinwallet.activities;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.widget.RelativeLayout;
 
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.OnTabSelectListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -14,6 +17,9 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.relayout_main)
     RelativeLayout relayout_main;
+
+    @BindView(R.id.bottomBar)
+    BottomBar bottomBar;
 
     private MainActivity mContext;
 
@@ -26,6 +32,16 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setElevation(0);
         mContext = MainActivity.this;
 
+
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                if (tabId == R.id.tab_favorites) {
+                    // The tab with id R.id.tab_favorites was selected,
+                    // change your content accordingly.
+                }
+            }
+        });
 
         rate_this_app_logic();
 
