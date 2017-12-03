@@ -1,0 +1,26 @@
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_send_24dp"
+        inActiveColor="#00FFFF"
+        activeColor="#FF00FF"
+        barColorWhenSelected="#FF0111"
+        badgeBackgroundColor="#FFFF00"
+        title="Send" />
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/ic_home_24dp"
+        inActiveColor="#00FF00"
+        activeColor="#FFF220"
+        barColorWhenSelected="#FF0000"
+        badgeBackgroundColor="#FFEE00"
+        title="Home" />
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_receive_24dp"
+        inActiveColor="#00FF00"
+        activeColor="#FF0FF0"
+        barColorWhenSelected="#FF0220"
+        badgeBackgroundColor="#FF00EE"
+        title="Receive" />
+</tabs>
