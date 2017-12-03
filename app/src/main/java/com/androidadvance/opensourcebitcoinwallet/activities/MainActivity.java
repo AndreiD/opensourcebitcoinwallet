@@ -2,10 +2,13 @@ package com.androidadvance.opensourcebitcoinwallet.activities;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.app.FragmentTransaction;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.androidadvance.opensourcebitcoinwallet.fragments.SampleFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -20,6 +23,7 @@ public class MainActivity extends BaseActivity {
 
     @BindView(R.id.bottomBar)
     BottomBar bottomBar;
+
 
     private MainActivity mContext;
 
@@ -36,9 +40,20 @@ public class MainActivity extends BaseActivity {
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_favorites) {
-                    // The tab with id R.id.tab_favorites was selected,
-                    // change your content accordingly.
+                if (tabId == R.id.tab_send) {
+                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                    t.replace(R.id.contentContainer, SampleFragment.newInstance("send"));
+                    t.commit();
+                }
+                if (tabId == R.id.tab_home) {
+                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                    t.replace(R.id.contentContainer, SampleFragment.newInstance("home"));
+                    t.commit();
+                }
+                if (tabId == R.id.tab_receive) {
+                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                    t.replace(R.id.contentContainer, SampleFragment.newInstance("receive"));
+                    t.commit();
                 }
             }
         });
@@ -48,7 +63,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    //delete me if not needed... [remember to enable the library from build.gradle (app) file
     private void rate_this_app_logic() {
         AppRate.with(this).setInstallDays(10).setLaunchTimes(10).setRemindInterval(2).setShowLaterButton(false).setDebug(false).monitor();
         AppRate.showRateDialogIfMeetsConditions(this);

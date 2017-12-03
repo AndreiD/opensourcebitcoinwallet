@@ -4,22 +4,41 @@
   <!-- you can edit them easy in styles -> theme manager -->
 
   <!-- Dark Theme -->
-  <color name="app_window_bgdark_color">#161616</color>
-  <color name="app_window_bglight_color">#262626</color>
+  <color name="app_window_bglight_color">#FFFFFF</color>
   <color name="app_text_unimportant">#6e6e6e</color>
-  <color name="app_text_label">#bfbfbf</color>
-  <color name="app_base">#18ffff</color>
+  <color name="app_text_label">#333333</color>
+  <color name="app_base">#cc3344</color>
+
+
+  <color name="app_blue">#2C7DAD</color>
+  <color name="app_dark_blue">#255B87</color>
+  <color name="app_verylightblue">#F6F6F7</color>
+  <color name="app_black">#222120</color>
+  <color name="app_bg_black_light">#342d2c</color>
+  <color name="app_bg_black_dark">#261f1c</color>
+  <color name="app_grey">#5F7B8A</color>
+
+  <color name="appcolor_red">#cc3344</color>
+  <color name="appcolor_brown">#675340</color>
+  <color name="appcolor_grey">#9D9E9E</color>
+  <color name="appcolor_yellow">#FFCD31</color>
+  <color name="appcolor_yellow_darker">#dab338</color>
+  <color name="appcolor_yellow_lighter">#ffdf7b</color>
+  <color name="appcolor_light_grey">#E5E5E5</color>
+
+
+  <color name="appcolor_store_card_bg">#9945392f</color>
+  <color name="appcolor_store_card_bg_solid">#45392f</color>
+
 
   <color name="appcolor_blue">#3949ab</color>
-  <color name="appcolor_red">#c51162</color>
   <color name="appcolor_green">#4db6ac</color>
-  <color name="appcolor_light_grey">#545454</color>
 
 
-  <color name="colorPrimary">@color/app_base</color>
-  <color name="colorPrimaryDark">@color/app_window_bglight_color</color>
-  <color name="colorAccent">@color/app_window_bglight_color</color>
-  <color name="colorAccentLighter">@color/appcolor_green</color>
+  <color name="colorPrimary">#cc3344</color>
+  <color name="colorPrimaryDark">#ab2f3d</color>
+  <color name="colorAccent">@color/appcolor_yellow</color>
+  <color name="colorAccentLighter">#ffd34c</color>
 
   <color name="primary_text">#212121</color>
   <color name="secondary_text">#727272</color>
@@ -60,7 +79,7 @@
   <color name="green">#ff008000</color>
   <color name="blue">#ff0000ff</color>
   <color name="navy">#ff000080</color>3
-  <color name="White">#ffffffff</color>
+  <color name="White">#ffffff</color>
   <color name="Ivory">#fffffff0</color>
   <color name="LightYellow">#ffffffe0</color>
   <color name="Yellow">#ffffff00</color>
@@ -94,7 +113,7 @@
   <color name="OldLace">#fffdf5e6</color>
   <color name="LightGoldenrodYellow">#fffafad2</color>
   <color name="Linen">#fffaf0e6</color>
-  <color name="AntiqueWhite">#fffaebd7</color>
+  <color name="AntiqueWhite">#faebd7</color>
   <color name="Salmon">#fffa8072</color>
   <color name="GhostWhite">#fff8f8ff</color>
   <color name="MintCream">#fff5fffa</color>

@@ -22,4 +22,6 @@
   <string name="generic_error_title">Error</string>
   <string name="dialog_general_error_message">A general error has occured.</string>
   <string name="second_activity">Second activity</string>
+    <string name="scan_barcode">Scan QR Code</string>
+  <string name="we_need_camera_permission">We need the camera permission in order to scan the QR Code</string>
 </resources>
