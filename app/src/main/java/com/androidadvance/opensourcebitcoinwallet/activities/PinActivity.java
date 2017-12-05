@@ -1,49 +1,62 @@
 package com.androidadvance.opensourcebitcoinwallet.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.support.annotation.Nullable;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.androidadvance.opensourcebitcoinwallet.utils.DialogFactory;
+import com.androidadvance.opensourcebitcoinwallet.utils.SecurityHolder;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-public class PinActivity extends BaseActivity{
+public class PinActivity extends BaseActivity {
+
+    @BindView(R.id.editText_pin1)
+    EditText editText_pin1;
+
+    @BindView(R.id.editText_pin2)
+    EditText editText_pin2;
+
+    @BindView(R.id.btn_save_new_pin)
+    Button btn_save_new_pin;
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_create_pin);
+        ButterKnife.bind(this);
+
         getSupportActionBar().hide();
 
+        //TODO: delete me
+        editText_pin1.setText("123123");
+        editText_pin2.setText("123123");
 
 
-        new CountDownTimer(500,500){
-
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                check_wallet_present();
-            }
-        }.start();
     }
 
-    private void check_wallet_present() {
 
-        boolean isWalletPresent = false;
-
-        if(!isWalletPresent){
-
-            //--- show create pin activity ---
-
-
-
+    @OnClick(R.id.btn_save_new_pin)
+    public void onClickSaveNewPin() {
+        String pin1 = editText_pin1.getText().toString();
+        String pin2 = editText_pin2.getText().toString();
+        if (!pin1.equals(pin2)) {
+            DialogFactory.error_toast(PinActivity.this, "Pin 1 is not equal to pin 2.").show();
+            return;
         }
+
+        SecurityHolder.pin = pin1;
+
+        startActivity(new Intent(PinActivity.this, ImportWalletActivity.class));
+        finish();
 
     }
 }

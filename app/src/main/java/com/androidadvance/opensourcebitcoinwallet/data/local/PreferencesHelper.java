@@ -9,6 +9,8 @@ public class PreferencesHelper {
 
   public static final String PREF_FILE_NAME = "myapp_shared_prefs";
   private static final String KEY_DEVICE_ID = "device_id";
+  private static final String KEY_PUBLIC_KEY = "publicKey";
+
 
 
   public PreferencesHelper(Context context) {
@@ -28,5 +30,15 @@ public class PreferencesHelper {
     mPref.edit().putString(KEY_DEVICE_ID, deviceID).apply();
   }
 
+
+  //encrypted
+  public String getPublicKey() {
+    return mPref.getString(KEY_PUBLIC_KEY, null);
+  }
+
+  //encrypted
+  public void setPublicKey(String publicKey) {
+    mPref.edit().putString(KEY_PUBLIC_KEY, publicKey).commit(); //commit instead of apply
+  }
 
 }

@@ -18,6 +18,7 @@
             android:gravity="center"
             android:text="Please setup a pin code for this application"
             android:textColor="@color/blue_dark"
+            android:layout_marginBottom="32dp"
             android:textSize="16sp" />
 
         <EditText
@@ -25,11 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="32dp"
             android:gravity="center"
             android:textColor="@color/primary_text"
-            android:layout_marginRight="32dp"
-            android:textSize="20sp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
+            android:textSize="30sp"
             android:inputType="numberPassword" />
 
         <EditText
@@ -38,17 +39,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginRight="64dp"
             android:textColor="@color/primary_text"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:inputType="numberPassword" />
 
         <Button
             android:id="@+id/btn_save_new_pin"
             android:layout_width="match_parent"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
+            android:layout_margin="32dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="@string/done"

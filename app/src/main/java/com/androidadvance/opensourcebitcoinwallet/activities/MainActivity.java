@@ -3,9 +3,7 @@ package com.androidadvance.opensourcebitcoinwallet.activities;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
 import com.androidadvance.opensourcebitcoinwallet.fragments.SampleFragment;

@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
 
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.androidadvance.opensourcebitcoinwallet.data.local.PreferencesHelper;
+import com.androidadvance.opensourcebitcoinwallet.utils.CommonUtils;
+import com.androidadvance.opensourcebitcoinwallet.utils.DialogFactory;
 
 
 public class SplashActivity extends BaseActivity {
@@ -17,6 +20,12 @@ public class SplashActivity extends BaseActivity {
 
         setContentView(R.layout.activity_splash);
         getSupportActionBar().hide();
+
+        //check if device is rooted
+        if (CommonUtils.isRooted()) {
+            DialogFactory.error_toast(SplashActivity.this, "This application does not run on rooted devices. Sorry :(").show();
+            finish();
+        }
 
 
         new CountDownTimer(500, 500) {
@@ -35,9 +44,9 @@ public class SplashActivity extends BaseActivity {
 
     private void check_wallet_present() {
 
-        boolean isWalletPresent = false;
+        PreferencesHelper preferencesHelper = new PreferencesHelper(SplashActivity.this);
 
-        if (!isWalletPresent) {
+        if (preferencesHelper.getPublicKey() == null) {
             //--- show create pin activity ---
             startActivity(new Intent(this, PinActivity.class));
         }
