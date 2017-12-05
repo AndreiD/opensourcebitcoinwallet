@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RelativeLayout;
 import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.androidadvance.opensourcebitcoinwallet.fragments.HomeFragment;
 import com.androidadvance.opensourcebitcoinwallet.fragments.SampleFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -45,7 +46,7 @@ public class MainActivity extends BaseActivity {
                 }
                 if (tabId == R.id.tab_home) {
                     FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-                    t.replace(R.id.contentContainer, SampleFragment.newInstance("home"));
+                    t.replace(R.id.contentContainer, HomeFragment.newInstance());
                     t.commit();
                 }
                 if (tabId == R.id.tab_receive) {
