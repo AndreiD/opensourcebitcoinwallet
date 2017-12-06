@@ -10,6 +10,7 @@ import com.androidadvance.opensourcebitcoinwallet.R;
 import com.androidadvance.opensourcebitcoinwallet.data.local.PreferencesHelper;
 import com.androidadvance.opensourcebitcoinwallet.utils.CommonUtils;
 import com.androidadvance.opensourcebitcoinwallet.utils.DialogFactory;
+import com.socks.library.KLog;
 
 
 public class SplashActivity extends BaseActivity {
@@ -22,24 +23,26 @@ public class SplashActivity extends BaseActivity {
         getSupportActionBar().hide();
 
         //check if device is rooted
-        if (CommonUtils.isRooted()) {
-            DialogFactory.error_toast(SplashActivity.this, "This application does not run on rooted devices. Sorry :(").show();
+        //TODO: check this!?
+        if (!CommonUtils.isRooted()) {
+            DialogFactory.error_toast(SplashActivity.this, "This application does not run on rooted devices.").show();
             finish();
+        } else {
+
+
+            new CountDownTimer(500, 500) {
+
+                @Override
+                public void onTick(long l) {
+
+                }
+
+                @Override
+                public void onFinish() {
+                    check_wallet_present();
+                }
+            }.start();
         }
-
-
-        new CountDownTimer(500, 500) {
-
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                check_wallet_present();
-            }
-        }.start();
     }
 
     private void check_wallet_present() {
@@ -47,8 +50,11 @@ public class SplashActivity extends BaseActivity {
         PreferencesHelper preferencesHelper = new PreferencesHelper(SplashActivity.this);
 
         if (preferencesHelper.getPublicKey() == null) {
-            //--- show create pin activity ---
+            KLog.d("we didn't detect any public key present");
             startActivity(new Intent(this, PinActivity.class));
+        }else{
+            KLog.d("a pub key is already present. show home");
+            startActivity(new Intent(this, MainActivity.class));
         }
 
     }
