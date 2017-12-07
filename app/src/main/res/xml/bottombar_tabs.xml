@@ -20,4 +20,12 @@
         activeColor="@color/white"
         barColorWhenSelected="@color/app_black"
         title="Receive" />
+    <tab
+        id="@+id/tab_settings"
+        icon="@drawable/ic_settings_24dp"
+        inActiveColor="#888888"
+        activeColor="@color/white"
+        barColorWhenSelected="@color/app_black"
+        title="Settings" />
+
 </tabs>

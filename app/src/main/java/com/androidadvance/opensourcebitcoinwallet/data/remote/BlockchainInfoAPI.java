@@ -3,31 +3,36 @@ package com.androidadvance.opensourcebitcoinwallet.data.remote;
 import android.content.Context;
 
 import com.androidadvance.opensourcebitcoinwallet.BuildConfig;
-
+import com.google.gson.JsonObject;
 import java.util.concurrent.TimeUnit;
 import okhttp3.Cache;
-import okhttp3.CertificatePinner;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
-public interface SampleAPI {
+public interface BlockchainInfoAPI {
 
-  String BASE_URL = "https://query.yahooapis.com/v1/public/";
+  String BASE_URL = "https://blockchain.info/";
 
-  //@GET("your_endpoint") Call<YOUR_POJO> getWeather(@Query("from") String from);
+  @GET("multiaddr") Call<JsonObject> getBalance(@Query("active") String from);
+
+  //for the conversion to USD
+  @GET("ticker") Call<JsonObject> getTicker();
 
   class Factory {
-    private static SampleAPI service;
+    private static BlockchainInfoAPI service;
 
-    public static SampleAPI getIstance(Context context) {
+    public static BlockchainInfoAPI getIstance(Context context) {
       if (service == null) {
 
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
-        builder.readTimeout(15, TimeUnit.SECONDS);
-        builder.connectTimeout(10, TimeUnit.SECONDS);
-        builder.writeTimeout(10, TimeUnit.SECONDS);
+        builder.readTimeout(25, TimeUnit.SECONDS);
+        builder.connectTimeout(20, TimeUnit.SECONDS);
+        builder.writeTimeout(20, TimeUnit.SECONDS);
 
         //builder.certificatePinner(new CertificatePinner.Builder().add("*.androidadvance.com", "sha256/RqzElicVPA6LkKm9HblOvNOUqWmD+4zNXcRb+WjcaAE=")
         //    .add("*.xxxxxx.com", "sha256/8Rw90Ej3Ttt8RRkrg+WYDS9n7IS03bk5bjP/UXPtaY8=")
@@ -41,15 +46,10 @@ public interface SampleAPI {
           builder.addInterceptor(interceptor);
         }
 
-        int cacheSize = 10 * 1024 * 1024; // 10 MiB
-        Cache cache = new Cache(context.getCacheDir(), cacheSize);
-        builder.cache(cache);
 
-        Retrofit retrofit = new Retrofit.Builder().client(builder.build())
-            .addConverterFactory(GsonConverterFactory.create())
-            .baseUrl(BASE_URL)
-            .build();
-        service = retrofit.create(SampleAPI.class);
+        Retrofit retrofit =
+            new Retrofit.Builder().client(builder.build()).addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build();
+        service = retrofit.create(BlockchainInfoAPI.class);
         return service;
       } else {
         return service;

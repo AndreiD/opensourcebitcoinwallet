@@ -1,5 +1,6 @@
 package com.androidadvance.opensourcebitcoinwallet.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
@@ -35,29 +36,35 @@ public class MainActivity extends BaseActivity {
         getSupportActionBar().setElevation(0);
         mContext = MainActivity.this;
 
-
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                if (tabId == R.id.tab_send) {
-                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-                    t.replace(R.id.contentContainer, SampleFragment.newInstance("send"));
-                    t.commit();
-                }
-                if (tabId == R.id.tab_home) {
-                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-                    t.replace(R.id.contentContainer, HomeFragment.newInstance());
-                    t.commit();
-                }
-                if (tabId == R.id.tab_receive) {
-                    FragmentTransaction t = getSupportFragmentManager().beginTransaction();
-                    t.replace(R.id.contentContainer, SampleFragment.newInstance("receive"));
-                    t.commit();
-                }
+        bottomBar.setDefaultTab(R.id.tab_home);
+        bottomBar.setOnTabSelectListener(tabId -> {
+            if (tabId == R.id.tab_send) {
+                FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                t.replace(R.id.contentContainer, SampleFragment.newInstance("send"));
+                t.addToBackStack("fragment_send");
+                t.commit();
+            }
+            if (tabId == R.id.tab_home) {
+                FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                t.replace(R.id.contentContainer, HomeFragment.newInstance());
+                t.addToBackStack("fragment_home");
+                t.commit();
+            }
+            if (tabId == R.id.tab_receive) {
+                FragmentTransaction t = getSupportFragmentManager().beginTransaction();
+                t.replace(R.id.contentContainer, SampleFragment.newInstance("receive"));
+                t.addToBackStack("fragment_receive");
+                t.commit();
+            }
+            if (tabId == R.id.tab_settings) {
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             }
         });
 
         rate_this_app_logic();
+
+
+
 
     }
 

@@ -51,10 +51,10 @@ public class SplashActivity extends BaseActivity {
 
         if (preferencesHelper.getPublicKey() == null) {
             KLog.d("we didn't detect any public key present");
-            startActivity(new Intent(this, PinActivity.class));
+            startActivity(new Intent(this, NewPinActivity.class));
         }else{
             KLog.d("a pub key is already present. show home");
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, EnterPinActivity.class));
         }
 
     }

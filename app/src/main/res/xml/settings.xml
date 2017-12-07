@@ -8,6 +8,11 @@
       android:title="Enable Notifications"/>
 
   <Preference
+      android:key="@string/erase_everything"
+      android:summary="This will erase everything that this app knows"
+      android:title="Reset Application"/>
+
+  <Preference
       android:key="@string/send_feedback"
       android:summary="We appreciate your feedback. What did you like or dislike ?"
       android:title="Send Feedback"/>
@@ -20,7 +25,7 @@
 
   <Preference
       android:key="copyright"
-      android:summary="AndreiD © 2016. All rights reserved."
+      android:summary="Android Advance © 2017. All rights reserved."
       android:title="Copyright"/>
 
 

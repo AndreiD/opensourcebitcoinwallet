@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.androidadvance.opensourcebitcoinwallet.R;
+import com.androidadvance.opensourcebitcoinwallet.data.local.PreferencesHelper;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -57,6 +58,16 @@ public class SettingsActivity extends AppCompatActivity {
                 emailIntent.putExtra(Intent.EXTRA_TEXT, "Write your feedback here...");
                 startActivity(Intent.createChooser(emailIntent, "Send email..."));
 
+                return true;
+            });
+
+
+            Preference buttonReset = findPreference(getString(R.string.erase_everything));
+            buttonReset.setOnPreferenceClickListener(preference -> {
+                PreferencesHelper preferencesHelper = new PreferencesHelper(getActivity());
+                preferencesHelper.clear();
+                getActivity().finish();
+                getActivity().finishAffinity();
                 return true;
             });
         }

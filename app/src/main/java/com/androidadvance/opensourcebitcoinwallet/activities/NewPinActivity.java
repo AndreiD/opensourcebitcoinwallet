@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class PinActivity extends BaseActivity {
+public class NewPinActivity extends BaseActivity {
 
     @BindView(R.id.editText_pin1)
     EditText editText_pin1;
@@ -49,13 +49,13 @@ public class PinActivity extends BaseActivity {
         String pin1 = editText_pin1.getText().toString();
         String pin2 = editText_pin2.getText().toString();
         if (!pin1.equals(pin2)) {
-            DialogFactory.error_toast(PinActivity.this, "Pin 1 is not equal to pin 2.").show();
+            DialogFactory.error_toast(NewPinActivity.this, "Pin 1 is not equal to pin 2.").show();
             return;
         }
 
         SecurityHolder.pin = pin1;
 
-        startActivity(new Intent(PinActivity.this, ImportWalletActivity.class));
+        startActivity(new Intent(NewPinActivity.this, ImportWalletActivity.class));
         finish();
 
     }
