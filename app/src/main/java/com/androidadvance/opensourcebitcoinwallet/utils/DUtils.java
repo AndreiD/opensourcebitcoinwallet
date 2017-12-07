@@ -52,6 +52,21 @@ import org.json.JSONObject;
 
 public class DUtils {
 
+
+  public static double round(double value, int places) {
+    if (places < 0) throw new IllegalArgumentException();
+
+    long factor = (long) Math.pow(10, places);
+    value = value * factor;
+    long tmp = Math.round(value);
+    return (double) tmp / factor;
+  }
+
+  public static String convertSatoshiToBTC(double satoshi) {
+    DecimalFormat df = new DecimalFormat("#.########");
+    return df.format(satoshi / 100000000);
+  }
+
   public static void caveman(Object message) {
     if (message != null) {
       Log.e("♦♦♦",

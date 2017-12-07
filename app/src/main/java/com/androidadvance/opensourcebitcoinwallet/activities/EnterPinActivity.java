@@ -10,6 +10,7 @@ import com.androidadvance.opensourcebitcoinwallet.BaseActivity;
 import com.androidadvance.opensourcebitcoinwallet.R;
 import com.androidadvance.opensourcebitcoinwallet.data.remote.BlockchainInfoAPI;
 import com.androidadvance.opensourcebitcoinwallet.utils.BalanceHolder;
+import com.androidadvance.opensourcebitcoinwallet.utils.DUtils;
 import com.androidadvance.opensourcebitcoinwallet.utils.DialogFactory;
 import com.androidadvance.opensourcebitcoinwallet.utils.SecurityHolder;
 
@@ -38,10 +39,8 @@ public class EnterPinActivity extends BaseActivity {
     ButterKnife.bind(this);
     mContext = EnterPinActivity.this;
 
-    getSupportActionBar().hide();
-
-    //TODO: delete me
-    editText_pin1.setText("123123");
+    editText_pin1.setText("123123"); //TODO: DELETE ME
+    btn_verify_pin.performClick(); //TODO: DELETE ME
   }
 
   @OnClick(R.id.btn_verify_pin) public void onClickSaveVerify() {
@@ -49,7 +48,7 @@ public class EnterPinActivity extends BaseActivity {
 
     //try to decrypt with the entered pin
     SecurityHolder.pin = pin1;
-    if (SecurityHolder.getPublicKey(EnterPinActivity.this) == null) {
+    if (SecurityHolder.getBTCAddress(EnterPinActivity.this) == null) {
       new CountDownTimer(1000, 1000) {
         @Override public void onTick(long l) {
         }
@@ -62,27 +61,25 @@ public class EnterPinActivity extends BaseActivity {
     }
 
     getTheBalances();
-
-    //pin is correct
-    startActivity(new Intent(EnterPinActivity.this, MainActivity.class));
-    finish();
   }
 
   private void getTheBalances() {
 
     blockchainInfoAPI = BlockchainInfoAPI.Factory.getIstance(mContext);
-    blockchainInfoAPI.getBalance("19TtHo1CYo8WTF3mTQdAfvkH3q8s2es46r").enqueue(new Callback<JsonObject>() {
+    blockchainInfoAPI.getBalance(SecurityHolder.btcAddress).enqueue(new Callback<JsonObject>() {
       @Override public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
         JsonObject responseJsonObject = response.body();
         if (responseJsonObject == null) {
           DialogFactory.error_toast(mContext, "Could not get the balance for your address").show();
           return;
         }
-        double finalBalance = formatBalance(responseJsonObject.getAsJsonObject("wallet").get("final_balance").getAsDouble());
+        String finalBalance = DUtils.convertSatoshiToBTC(responseJsonObject.getAsJsonObject("wallet").get("final_balance").getAsDouble());
         KLog.d("Final balance is " + finalBalance);
 
-        BalanceHolder.balanceBTC = finalBalance;
-        convertBalanceToUSD(finalBalance);
+        BalanceHolder.balanceBTC = Double.valueOf(finalBalance);
+
+        BalanceHolder.txs = responseJsonObject.getAsJsonArray("txs");
+        convertBalanceToUSD(Double.valueOf(finalBalance));
       }
 
       @Override public void onFailure(Call<JsonObject> call, Throwable t) {
@@ -96,7 +93,9 @@ public class EnterPinActivity extends BaseActivity {
       @Override public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
         JsonObject responseJsonObject = response.body();
         double oneBTCinUSD = responseJsonObject.getAsJsonObject("USD").get("15m").getAsDouble();
-        BalanceHolder.btcConvertedToUSD = round(oneBTCinUSD * finalBalance, 2);
+        BalanceHolder.btcConvertedToUSD = DUtils.round(oneBTCinUSD * finalBalance, 2);
+
+        startMainActivity();
       }
 
       @Override public void onFailure(Call<JsonObject> call, Throwable t) {
@@ -105,31 +104,11 @@ public class EnterPinActivity extends BaseActivity {
     });
   }
 
-  public static double round(double value, int places) {
-    if (places < 0) throw new IllegalArgumentException();
-
-    long factor = (long) Math.pow(10, places);
-    value = value * factor;
-    long tmp = Math.round(value);
-    return (double) tmp / factor;
+  //balanced are downloaded ok
+  private void startMainActivity() {
+    startActivity(new Intent(EnterPinActivity.this, MainActivity.class));
+    finish();
   }
 
-  private static double formatBalance(double balance) {
 
-    balance = balance / 100000000;
-    String number = String.valueOf(balance);
-
-    int point = number.indexOf(".");
-    if (point != -1) {
-      String after = number.substring(point + 1);
-      int afterint = after.length();
-      afterint = 8 - afterint;
-      for (int i = 0; i < afterint; i++) {
-        number += "0";
-      }
-    } else {
-      number += ".00000000";
-    }
-    return Double.valueOf(number);
-  }
 }

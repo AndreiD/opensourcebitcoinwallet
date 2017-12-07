@@ -20,11 +20,10 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
+
 
         //check if device is rooted
-        //TODO: check this!?
-        if (!CommonUtils.isRooted()) {
+        if (CommonUtils.isRooted()) {
             DialogFactory.error_toast(SplashActivity.this, "This application does not run on rooted devices.").show();
             finish();
         } else {
@@ -49,11 +48,11 @@ public class SplashActivity extends BaseActivity {
 
         PreferencesHelper preferencesHelper = new PreferencesHelper(SplashActivity.this);
 
-        if (preferencesHelper.getPublicKey() == null) {
-            KLog.d("we didn't detect any public key present");
+        if (preferencesHelper.getBTCAddress() == null) {
+            KLog.d("we didn't detect any address present");
             startActivity(new Intent(this, NewPinActivity.class));
         }else{
-            KLog.d("a pub key is already present. show home");
+            KLog.d("an address is already present. show home");
             startActivity(new Intent(this, EnterPinActivity.class));
         }
 

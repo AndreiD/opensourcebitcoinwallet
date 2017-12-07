@@ -34,7 +34,7 @@ public class NewPinActivity extends BaseActivity {
         setContentView(R.layout.activity_create_pin);
         ButterKnife.bind(this);
 
-        getSupportActionBar().hide();
+
 
         //TODO: delete me
         editText_pin1.setText("123123");

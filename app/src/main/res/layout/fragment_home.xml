@@ -22,6 +22,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginTop="32dp"
             tools:text="Your Balance"
             android:textColor="@color/blue_light"
             android:textSize="16sp"
@@ -44,8 +45,10 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView_home"
         android:layout_width="match_parent"
-        android:layout_below="@id/linlayoutTopBalance"
         android:layout_height="match_parent"
+        android:layout_below="@id/linlayoutTopBalance"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         ></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

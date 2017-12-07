@@ -23,6 +23,12 @@
       android:summary="@string/version"
       android:title="Version"/>
 
+
+  <Preference
+      android:key="credits"
+      android:summary="App icon made by By Salvia Santos, http://www.salvieta.com/"
+      android:title="Credits"/>
+
   <Preference
       android:key="copyright"
       android:summary="Android Advance © 2017. All rights reserved."

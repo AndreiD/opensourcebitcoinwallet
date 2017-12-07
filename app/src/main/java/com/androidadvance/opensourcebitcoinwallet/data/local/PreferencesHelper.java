@@ -9,7 +9,7 @@ public class PreferencesHelper {
 
   public static final String PREF_FILE_NAME = "myapp_shared_prefs";
   private static final String KEY_DEVICE_ID = "device_id";
-  private static final String KEY_PUBLIC_KEY = "publicKey";
+  private static final String KEY_BTC_ADDRESS = "addressKEY";
 
 
 
@@ -32,13 +32,13 @@ public class PreferencesHelper {
 
 
   //encrypted
-  public String getPublicKey() {
-    return mPref.getString(KEY_PUBLIC_KEY, null);
+  public String getBTCAddress() {
+    return mPref.getString(KEY_BTC_ADDRESS, null);
   }
 
   //encrypted
-  public void setPublicKey(String publicKey) {
-    mPref.edit().putString(KEY_PUBLIC_KEY, publicKey).commit(); //commit instead of apply
+  public void setBTCAddress(String addressbtc) {
+    mPref.edit().putString(KEY_BTC_ADDRESS, addressbtc).commit(); //commit instead of apply
   }
 
 }

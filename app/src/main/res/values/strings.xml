@@ -27,4 +27,5 @@
     <string name="done">SAVE NEW PIN</string>
     <string name="erase_everything">erase_everything</string>
     <string name="enter">ENTER</string>
+  <string name="share_using">Share Using</string>
 </resources>

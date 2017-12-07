@@ -30,12 +30,12 @@
             android:textSize="17sp" />
 
         <Button
-            android:id="@+id/btnScanPublicKey"
+            android:id="@+id/btnScanBTCAddresss"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:textColor="@color/white"
-            android:text="Scan Public Key"
+            android:text="Scan BTC Address"
             />
 
         <TextView
