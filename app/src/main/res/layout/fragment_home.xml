@@ -21,11 +21,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:gravity="center"
             android:layout_marginTop="32dp"
-            tools:text="Your Balance"
-            android:textColor="@color/blue_light"
+            android:gravity="center"
+            android:textColor="@color/app_dark_blue"
             android:textSize="16sp"
+            tools:text="Your Balance"
             />
 
         <TextView
@@ -34,9 +34,9 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
-            tools:text="0.00213123 BTC (12323 USD)"
-            android:textColor="@color/blue_dark"
+            android:textColor="@color/app_dark_blue"
             android:textSize="24sp"
+            tools:text="0.00213123 BTC (12323 USD)"
             />
 
     </LinearLayout>

@@ -76,7 +76,7 @@ public class EnterPinActivity extends BaseActivity {
         String finalBalance = DUtils.convertSatoshiToBTC(responseJsonObject.getAsJsonObject("wallet").get("final_balance").getAsDouble());
         KLog.d("Final balance is " + finalBalance);
 
-        BalanceHolder.balanceBTC = Double.valueOf(finalBalance);
+        BalanceHolder.balanceBTC = Double.parseDouble(finalBalance);
 
         BalanceHolder.txs = responseJsonObject.getAsJsonArray("txs");
         convertBalanceToUSD(Double.valueOf(finalBalance));

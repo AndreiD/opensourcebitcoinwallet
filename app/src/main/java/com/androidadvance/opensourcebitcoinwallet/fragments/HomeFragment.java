@@ -16,6 +16,7 @@ import com.androidadvance.opensourcebitcoinwallet.utils.DUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.socks.library.KLog;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +46,9 @@ public class HomeFragment extends BaseFragment {
     super.onActivityCreated(savedInstanceState);
 
     textView_fragmentHome_headline.setText("Current Balance");
-    textView_fragmentHome_balance.setText(String.valueOf(BalanceHolder.balanceBTC) + " BTC (" + BalanceHolder.btcConvertedToUSD + " USD)");
+    DecimalFormat df = new DecimalFormat("#.########");
+
+    textView_fragmentHome_balance.setText(df.format(BalanceHolder.balanceBTC) + " BTC (" + BalanceHolder.btcConvertedToUSD + " USD)");
 
 
 
