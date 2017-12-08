@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="32dp"
             android:textColor="@color/white"
-            android:text="Scan BTC Address"
+            android:text="Scan BTC Address or Public Key"
             />
 
         <TextView
